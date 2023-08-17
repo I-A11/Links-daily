@@ -1,10 +1,21 @@
 import { Text, View, StyleSheet, TextInput } from "react-native";
 
-const UserInput = ({ filed, value, setValue }) => {
+const UserInput = ({
+  filed,
+  value,
+  setValue,
+  autoCapitalize = "none",
+  keyboardType = "default",
+  secureTextEntry = false,
+}) => {
   return (
     <View style={styles.inputContainer}>
       <Text style={styles.inputLabel}>{filed}:</Text>
       <TextInput
+        autoCorrect={false}
+        autoCapitalize={autoCapitalize}
+        keyboardType={keyboardType}
+        secureTextEntry={secureTextEntry}
         style={styles.input}
         value={value}
         onChangeText={(text) => setValue(text)}
