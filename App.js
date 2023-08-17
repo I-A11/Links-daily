@@ -1,11 +1,16 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import Welcome from "./components/Welcome";
 
 export default function App() {
+  const names = ["Islam", "Yasmin", "Farida", "Zain"];
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Hello World</Text>
       <StatusBar style="auto" />
+      {names.map((item) => (
+        <Welcome name={item} />
+      ))}
     </View>
   );
 }
