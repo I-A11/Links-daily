@@ -2,12 +2,37 @@ import { useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import UserInput from "../components/auth/UserInput";
 import SubmitButton from "../components/auth/SubmitButton";
+import axios from "axios";
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    if (!name || !email || !password) {
+      alert("All field are required");
+      setLoading(false);
+      return;
+    }
+    console.log("Signup request", name, email, password);
+    try {
+      const { data } = await axios.post("http://localhost:8000/api/signup", {
+        name,
+        email,
+        password,
+      });
+      setLoading(false);
+
+      console.log("SIGN IN SUCCESS", data);
+      alert("Sign up successful");
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Sign up</Text>
@@ -33,7 +58,11 @@ const Signup = () => {
         autoCompleteType="password"
       />
 
-      <SubmitButton />
+      <SubmitButton
+        title="Sign Up"
+        handleSubmit={handleSubmit}
+        loading={loading}
+      />
       <Text>{JSON.stringify({ name, email, password }, null, 4)}</Text>
     </View>
   );

@@ -1,9 +1,9 @@
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
-const SubmitButton = () => {
+const SubmitButton = ({ title, handleSubmit, loading }) => {
   return (
-    <TouchableOpacity style={styles.buttonContainer}>
-      <Text style={styles.button}>Submit</Text>
+    <TouchableOpacity style={styles.buttonContainer} onPress={handleSubmit}>
+      <Text style={styles.button}>{loading ? "please wait..." : title}</Text>
     </TouchableOpacity>
   );
 };
