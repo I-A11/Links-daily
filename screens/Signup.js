@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import UserInput from "../components/auth/UserInput";
 import SubmitButton from "../components/auth/SubmitButton";
 import axios from "axios";
+import Logo from "../components/auth/Logo";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -35,6 +36,7 @@ const Signup = () => {
   };
   return (
     <View style={styles.container}>
+      <Logo />
       <Text style={styles.text}>Sign up</Text>
       <UserInput
         filed="Name"
@@ -63,7 +65,7 @@ const Signup = () => {
         handleSubmit={handleSubmit}
         loading={loading}
       />
-      <Text>{JSON.stringify({ name, email, password }, null, 4)}</Text>
+      {/* <Text>{JSON.stringify({ name, email, password }, null, 4)}</Text> */}
     </View>
   );
 };
